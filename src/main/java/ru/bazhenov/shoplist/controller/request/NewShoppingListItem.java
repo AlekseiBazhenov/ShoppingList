@@ -1,4 +1,4 @@
-package ru.bazhenov.shoplist.controller;
+package ru.bazhenov.shoplist.controller.request;
 
 public class NewShoppingListItem {
 

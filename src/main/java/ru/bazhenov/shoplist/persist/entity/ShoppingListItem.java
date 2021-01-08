@@ -1,4 +1,4 @@
-package ru.bazhenov.shoplist.persist;
+package ru.bazhenov.shoplist.persist.entity;
 
 import javax.persistence.*;
 
