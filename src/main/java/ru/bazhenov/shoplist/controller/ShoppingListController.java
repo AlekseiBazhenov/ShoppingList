@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.bazhenov.shoplist.persist.ShoppingItem;
-import ru.bazhenov.shoplist.persist.ShoppingItemRepository;
-import ru.bazhenov.shoplist.persist.User;
+import ru.bazhenov.shoplist.persist.entity.ShoppingListItem;
+import ru.bazhenov.shoplist.persist.ShoppingListRepository;
+import ru.bazhenov.shoplist.persist.entity.User;
 import ru.bazhenov.shoplist.persist.UserRepository;
 
 import java.security.Principal;
@@ -22,11 +22,11 @@ public class ShoppingListController {
 
     private static final Logger logger = LoggerFactory.getLogger(ShoppingListController.class);
 
-    private final ShoppingItemRepository repository;
+    private final ShoppingListRepository repository;
     private final UserRepository userRepository;
 
     @Autowired
-    public ShoppingListController(ShoppingItemRepository repository, UserRepository userRepository) {
+    public ShoppingListController(ShoppingListRepository repository, UserRepository userRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
     }
@@ -36,12 +36,12 @@ public class ShoppingListController {
         logger.info("User name: {}", principal.getName());
 
         model.addAttribute("items", repository.findByUserUsername(principal.getName()));
-        model.addAttribute("item", new ShoppingItem());
+        model.addAttribute("item", new ShoppingListItem());
         return "index";
     }
 
     @PostMapping
-    public String newShoppingItem(ShoppingItem item, Principal principal) {
+    public String newShoppingItem(ShoppingListItem item, Principal principal) {
         logger.info("User name: {}", principal.getName());
 
         if (item.getName().isEmpty()) {

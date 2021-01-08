@@ -3,7 +3,7 @@ package ru.bazhenov.shoplist.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.bazhenov.shoplist.persist.User;
+import ru.bazhenov.shoplist.persist.entity.User;
 import ru.bazhenov.shoplist.persist.UserRepository;
 
 @Service

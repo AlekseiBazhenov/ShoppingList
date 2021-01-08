@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "shopping_items")
-public class ShoppingItem {
+public class ShoppingListItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class ShoppingItem {
     @ManyToOne
     private User user;
 
-    public ShoppingItem() {
+    public ShoppingListItem() {
     }
 
     public long getId() {
