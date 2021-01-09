@@ -3,8 +3,11 @@ package ru.bazhenov.shoplist.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.bazhenov.shoplist.persist.User;
+import ru.bazhenov.shoplist.controller.request.NewUser;
+import ru.bazhenov.shoplist.persist.entity.User;
 import ru.bazhenov.shoplist.persist.UserRepository;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -19,10 +22,14 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void create(UserRepresentation representation) {
+    public User create(NewUser representation) {
         User user = new User();
         user.setUsername(representation.getUsername());
         user.setPassword(passwordEncoder.encode(representation.getPassword()));
-        repository.save(user);
+        return repository.save(user);
+    }
+
+    public Optional<User> getUser(String name) {
+        return repository.findByUsername(name);
     }
 }

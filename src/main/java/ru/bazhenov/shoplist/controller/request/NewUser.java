@@ -1,10 +1,8 @@
-package ru.bazhenov.shoplist.service;
+package ru.bazhenov.shoplist.controller.request;
 
 import javax.validation.constraints.NotBlank;
 
-public class UserRepresentation {
-
-    private long id;
+public class NewUser {
 
     @NotBlank
     private String username;
@@ -14,14 +12,6 @@ public class UserRepresentation {
 
     @NotBlank
     private String repeatPassword;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.bazhenov.shoplist.service.UserRepresentation;
+import ru.bazhenov.shoplist.controller.request.NewUser;
 import ru.bazhenov.shoplist.service.UserService;
 
 import javax.validation.Valid;
@@ -29,12 +29,12 @@ public class LoginController {
 
     @GetMapping("/register")
     public String registerPage(Model model) {
-        model.addAttribute("user", new UserRepresentation());
+        model.addAttribute("user", new NewUser());
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerNewUser(@Valid @ModelAttribute("user") UserRepresentation representation, BindingResult bindingResult) {
+    public String registerNewUser(@Valid @ModelAttribute("user") NewUser representation, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "register";
         }

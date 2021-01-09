@@ -1,4 +1,4 @@
-package ru.bazhenov.shoplist.persist;
+package ru.bazhenov.shoplist.persist.entity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +22,7 @@ public class User {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<ShoppingItem> shoppingItems;
+    private List<ShoppingListItem> shoppingListItems;
 
     public User() {
     }
@@ -51,11 +51,11 @@ public class User {
         this.password = password;
     }
 
-    public List<ShoppingItem> getShoppingItems() {
-        return shoppingItems;
+    public List<ShoppingListItem> getShoppingItems() {
+        return shoppingListItems;
     }
 
-    public void setShoppingItems(List<ShoppingItem> shoppingItems) {
-        this.shoppingItems = shoppingItems;
+    public void setShoppingItems(List<ShoppingListItem> shoppingListItems) {
+        this.shoppingListItems = shoppingListItems;
     }
 }
