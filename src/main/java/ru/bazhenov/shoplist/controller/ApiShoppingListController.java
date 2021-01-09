@@ -10,6 +10,7 @@ import ru.bazhenov.shoplist.persist.entity.ShoppingListItem;
 import ru.bazhenov.shoplist.persist.ShoppingListRepository;
 import ru.bazhenov.shoplist.persist.entity.User;
 import ru.bazhenov.shoplist.persist.UserRepository;
+import ru.bazhenov.shoplist.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -21,16 +22,18 @@ import java.util.Optional;
 @RequestMapping("/api/items")
 public class ApiShoppingListController {
 
+    // TODO: docs in swagger
+
     private final ShoppingListRepository shoppingListRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
     public ApiShoppingListController(
             ShoppingListRepository shoppingListRepository,
-            UserRepository userRepository
+            UserService userService
     ) {
         this.shoppingListRepository = shoppingListRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -57,7 +60,7 @@ public class ApiShoppingListController {
             throw new IllegalArgumentException(validation.getFieldErrors().toString());
         }
 
-        Optional<User> optionalUser = userRepository.findByUsername(principal.getName());
+        Optional<User> optionalUser = userService.getUser(principal.getName());
         if (optionalUser.isPresent()) {
             User foundUser = optionalUser.get();
             ShoppingListItem item = new ShoppingListItem();

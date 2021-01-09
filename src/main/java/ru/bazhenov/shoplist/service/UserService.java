@@ -7,6 +7,8 @@ import ru.bazhenov.shoplist.controller.request.NewUser;
 import ru.bazhenov.shoplist.persist.entity.User;
 import ru.bazhenov.shoplist.persist.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -25,5 +27,9 @@ public class UserService {
         user.setUsername(representation.getUsername());
         user.setPassword(passwordEncoder.encode(representation.getPassword()));
         return repository.save(user);
+    }
+
+    public Optional<User> getUser(String name) {
+        return repository.findByUsername(name);
     }
 }

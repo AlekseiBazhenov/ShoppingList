@@ -1,12 +1,12 @@
 package ru.bazhenov.shoplist.controller.response;
 
-public class UserRegistrationResponse {
+public class UserResponse {
 
     private long id;
 
     private String name;
 
-    public UserRegistrationResponse(long id, String name) {
+    public UserResponse(long id, String name) {
         this.id = id;
         this.name = name;
     }
