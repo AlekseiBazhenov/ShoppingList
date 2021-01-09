@@ -32,27 +32,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // TODO: для API
-//        http
-//                .csrf().disable()
-//                .authorizeRequests().anyRequest().authenticated()
-//                .and().httpBasic()
-//                .and().sessionManagement().disable();
-
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/register").permitAll()
+                .antMatchers("/api/user/login", "/api/user/register").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/authenticateUser")
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login")
-                .permitAll();
+                .httpBasic()
+                .and().sessionManagement().disable();
+
+//        http
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/register").permitAll()
+//                .antMatchers("/**").authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .loginProcessingUrl("/authenticateUser")
+//                .and()
+//                .logout()
+//                .logoutSuccessUrl("/login")
+//                .permitAll();
     }
 
     public DaoAuthenticationProvider authenticationProvider() {
