@@ -3,8 +3,8 @@ package ru.bazhenov.shoplist.persist.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "shopping_items")
-public class ShoppingListItem {
+@Table(name = "products")
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +13,13 @@ public class ShoppingListItem {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    private User user;
+    @Column(nullable = false)
+    private boolean bought;
 
-    public ShoppingListItem() {
+    @ManyToOne
+    private ShoppingList shoppingList;
+
+    public Product() {
     }
 
     public long getId() {
@@ -35,11 +38,19 @@ public class ShoppingListItem {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
+    public boolean isBought() {
+        return bought;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setBought(boolean bought) {
+        this.bought = bought;
+    }
+
+    public ShoppingList getShoppingList() {
+        return shoppingList;
+    }
+
+    public void setShoppingList(ShoppingList shoppingList) {
+        this.shoppingList = shoppingList;
     }
 }

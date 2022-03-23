@@ -3,9 +3,11 @@ package ru.bazhenov.shoplist.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.bazhenov.shoplist.controller.request.NewUser;
-import ru.bazhenov.shoplist.persist.entity.User;
+import ru.bazhenov.shoplist.controller.user.request.NewUser;
 import ru.bazhenov.shoplist.persist.UserRepository;
+import ru.bazhenov.shoplist.persist.entity.User;
+import ru.bazhenov.shoplist.response.UserData;
+import ru.bazhenov.shoplist.service.converters.UserConverter;
 
 import java.util.Optional;
 
@@ -16,20 +18,25 @@ public class UserService {
 
     private final BCryptPasswordEncoder passwordEncoder;
 
+    private final UserConverter userConverter;
+
     @Autowired
-    public UserService(UserRepository repository, BCryptPasswordEncoder passwordEncoder) {
+    public UserService(UserRepository repository, BCryptPasswordEncoder passwordEncoder, UserConverter userConverter) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
+        this.userConverter = userConverter;
     }
 
-    public User create(NewUser representation) {
+    public UserData create(NewUser representation) {
         User user = new User();
         user.setUsername(representation.getUsername());
         user.setPassword(passwordEncoder.encode(representation.getPassword()));
-        return repository.save(user);
+        User saved = repository.save(user);
+        return userConverter.toResponse(saved);
     }
 
-    public Optional<User> getUser(String name) {
-        return repository.findByUsername(name);
+    public Optional<UserData> getUser(String name) {
+        return repository.findByUsername(name)
+                .map(userConverter::toResponse);
     }
 }

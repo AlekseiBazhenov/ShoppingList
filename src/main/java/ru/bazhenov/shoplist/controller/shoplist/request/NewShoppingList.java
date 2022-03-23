@@ -1,10 +1,10 @@
-package ru.bazhenov.shoplist.controller.request;
+package ru.bazhenov.shoplist.controller.shoplist.request;
 
 import javax.validation.constraints.NotBlank;
 
-public class NewItem {
+public class NewShoppingList {
 
-    @NotBlank
+    @NotBlank(message = "shopping list name is required")
     private String name;
 
     public String getName() {

@@ -22,7 +22,7 @@ public class User {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<ShoppingListItem> shoppingListItems;
+    private List<ShoppingList> shoppingLists;
 
     public User() {
     }
@@ -51,11 +51,11 @@ public class User {
         this.password = password;
     }
 
-    public List<ShoppingListItem> getShoppingItems() {
-        return shoppingListItems;
+    public List<ShoppingList> getShoppingLists() {
+        return shoppingLists;
     }
 
-    public void setShoppingItems(List<ShoppingListItem> shoppingListItems) {
-        this.shoppingListItems = shoppingListItems;
+    public void setShoppingLists(List<ShoppingList> shoppingLists) {
+        this.shoppingLists = shoppingLists;
     }
 }

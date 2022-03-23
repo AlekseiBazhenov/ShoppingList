@@ -1,0 +1,414 @@
+{
+	"info": {
+		"_postman_id": "42da6798-c321-4a44-a0a9-b07068738bf4",
+		"name": "ShoppingList",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Register",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test@test.ru\",\n    \"password\": \"123\",\n    \"passwordConfirmation\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.11:8080/api/user/register",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"11"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test@test.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.11:8080/api/user/login",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"11"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shopping List",
+			"item": [
+				{
+					"name": "Shopping List Get",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test@test.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.11:8080/api/shopping-lists",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"11"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shopping-lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shopping List Create",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test@test.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Shopping list #2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.11:8080/api/shopping-lists",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"11"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shopping-lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shopping List Update",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test@test.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test SL 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.11:8080/api/shopping-lists/2",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"11"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shopping-lists",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shopping List Delete",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test@test.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.11:8080/api/shopping-lists/3",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"11"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shopping-lists",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Product Create",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test@test.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test product 3\",\n    \"shoppingListId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.11:8080/api/items",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"11"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Buy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test@test.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bought\": true,\n    \"shoppingListId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.11:8080/api/items/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"11"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"items",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Delete",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "test@test.ru",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bought\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.11:8080/api/items/2",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"11"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"items",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

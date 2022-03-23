@@ -2,13 +2,13 @@ package ru.bazhenov.shoplist.persist;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.bazhenov.shoplist.persist.entity.ShoppingListItem;
+import ru.bazhenov.shoplist.persist.entity.ShoppingList;
 
 import java.util.List;
 
 @Repository
-public interface ShoppingListRepository extends JpaRepository<ShoppingListItem, Long> {
+public interface ShoppingListRepository extends JpaRepository<ShoppingList, Long> {
 
-    List<ShoppingListItem> findByUserUsername(String username);
+    List<ShoppingList> findByUserUsername(String username);
 
 }

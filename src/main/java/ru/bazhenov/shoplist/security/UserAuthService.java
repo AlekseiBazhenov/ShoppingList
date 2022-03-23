@@ -29,7 +29,7 @@ public class UserAuthService implements UserDetailsService {
                         user.getPassword(),
                         Collections.singletonList(new SimpleGrantedAuthority("USER"))
                 ))
-                .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
+                .orElseThrow(() -> new UsernameNotFoundException("user not found"));
 
     }
 }
