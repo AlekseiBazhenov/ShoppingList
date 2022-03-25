@@ -18,7 +18,7 @@ import java.security.Principal;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
@@ -30,7 +30,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/login")
+    @GetMapping
     public ResponseEntity<ApiResponse<UserData>> checkLogin(
             Principal principal
     ) {
@@ -43,7 +43,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/register")
+    @PostMapping
     public ResponseEntity<ApiResponse<UserData>> registerNewUser(
             @RequestBody @Valid NewUser newUser,
             BindingResult validation
