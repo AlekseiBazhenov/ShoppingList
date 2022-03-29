@@ -7,9 +7,12 @@ import ru.bazhenov.shoplist.persist.ShoppingListRepository;
 import ru.bazhenov.shoplist.persist.entity.Product;
 import ru.bazhenov.shoplist.persist.entity.ShoppingList;
 import ru.bazhenov.shoplist.response.ProductData;
+import ru.bazhenov.shoplist.response.ProductsData;
 import ru.bazhenov.shoplist.service.converters.ProductConverter;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductsService {
@@ -55,5 +58,13 @@ public class ProductsService {
 
     public void delete(Long id) {
         productsRepository.deleteById(id);
+    }
+
+    public ProductsData getProducts(Long id) {
+        List<ProductData> data = productsRepository.findByShoppingListId(id)
+                .stream()
+                .map(productConverter::toResponse)
+                .collect(Collectors.toList());
+        return new ProductsData(data);
     }
 }

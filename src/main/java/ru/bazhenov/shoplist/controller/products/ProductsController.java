@@ -10,9 +10,7 @@ import ru.bazhenov.shoplist.controller.common.exception.RecordNotFoundException;
 import ru.bazhenov.shoplist.controller.common.response.ApiResponse;
 import ru.bazhenov.shoplist.controller.products.request.NewProduct;
 import ru.bazhenov.shoplist.controller.products.request.UpdatedProduct;
-import ru.bazhenov.shoplist.response.ProductData;
-import ru.bazhenov.shoplist.response.ShoppingListData;
-import ru.bazhenov.shoplist.response.SuccessResultData;
+import ru.bazhenov.shoplist.response.*;
 import ru.bazhenov.shoplist.service.ProductsService;
 import ru.bazhenov.shoplist.service.ShoppingListService;
 

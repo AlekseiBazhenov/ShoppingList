@@ -80,7 +80,6 @@ public class ShoppingListService {
     private ShoppingList createShoppingList(String userName, String shoppingListName) {
         ShoppingList defaultShoppingList = new ShoppingList();
         defaultShoppingList.setName(shoppingListName == null ? "Shopping List #1" : shoppingListName);
-        defaultShoppingList.setProducts(Collections.emptyList());
         //noinspection OptionalGetWithoutIsPresent user checked in controller
         User user = userRepository.findByUsername(userName).get();
         defaultShoppingList.setUser(user);

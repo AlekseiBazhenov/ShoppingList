@@ -1,7 +1,8 @@
 package ru.bazhenov.shoplist.persist.entity;
 
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "shopping_lists")
@@ -17,12 +18,10 @@ public class ShoppingList {
     @ManyToOne
     private User user;
 
-    @OneToMany(
-            mappedBy = "shoppingList",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Product> products;
+    @Formula("(SELECT COUNT(p.id) FROM shopping_lists sl " +
+            "LEFT JOIN products p on p.shopping_list_id = sl.id " +
+            "WHERE sl.id = id)")
+    private int productsCount;
 
     public ShoppingList() {
     }
@@ -51,11 +50,11 @@ public class ShoppingList {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public int getProductsCount() {
+        return productsCount;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProductsCount(int productsCount) {
+        this.productsCount = productsCount;
     }
 }

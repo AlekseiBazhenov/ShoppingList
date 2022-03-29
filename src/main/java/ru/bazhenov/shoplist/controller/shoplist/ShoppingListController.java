@@ -10,10 +10,8 @@ import ru.bazhenov.shoplist.controller.common.exception.RecordNotFoundException;
 import ru.bazhenov.shoplist.controller.common.response.ApiResponse;
 import ru.bazhenov.shoplist.controller.shoplist.request.NewShoppingList;
 import ru.bazhenov.shoplist.controller.shoplist.request.UpdatedShoppingList;
-import ru.bazhenov.shoplist.response.ShoppingListData;
-import ru.bazhenov.shoplist.response.ShoppingListsData;
-import ru.bazhenov.shoplist.response.SuccessResultData;
-import ru.bazhenov.shoplist.response.UserData;
+import ru.bazhenov.shoplist.response.*;
+import ru.bazhenov.shoplist.service.ProductsService;
 import ru.bazhenov.shoplist.service.ShoppingListService;
 import ru.bazhenov.shoplist.service.UserService;
 
@@ -26,11 +24,17 @@ import java.util.Optional;
 public class ShoppingListController {
 
     private final ShoppingListService shoppingListService;
+    private final ProductsService productsService;
     private final UserService userService;
 
     @Autowired
-    public ShoppingListController(ShoppingListService shoppingListService, UserService userService) {
+    public ShoppingListController(
+            ShoppingListService shoppingListService,
+            ProductsService productsService,
+            UserService userService
+    ) {
         this.shoppingListService = shoppingListService;
+        this.productsService = productsService;
         this.userService = userService;
     }
 
@@ -42,6 +46,20 @@ public class ShoppingListController {
             return ResponseEntity.ok(new ApiResponse<>(responseShoppingLists, null));
         } else {
             throw new RecordNotFoundException("user not found");
+        }
+    }
+
+    @GetMapping("/{id}/products")
+    public ResponseEntity<ApiResponse<ProductsData>> getShoppingListProducts(
+            @PathVariable("id") Long id,
+            Principal principal
+    ) {
+        Optional<ShoppingListData> shoppingList = shoppingListService.find(id);
+        if (shoppingList.isPresent()) {
+            ProductsData responseShoppingLists = productsService.getProducts(id);
+            return ResponseEntity.ok(new ApiResponse<>(responseShoppingLists, null));
+        } else {
+            throw new RecordNotFoundException("invalid shopping list id : " + id);
         }
     }
 
